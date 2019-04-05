@@ -1,0 +1,31 @@
+{
+  "name": "tedxntua-timer-client",
+  "version": "0.1.0",
+  "description": "Client for TEDxNTUA Timer",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@tdiam/remotecontrol-preact": "file:../../remotecontrol-preact",
+    "preact": ">=10 || ^10.0.0-alpha.0",
+    "preact-async-route": "^2.2.1",
+    "preact-router": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-preact": "^1.1.0",
+    "parcel-bundler": "^1.12.3",
+    "sass": "^1.17.3"
+  },
+  "alias": {
+    "~": "src"
+  }
+}
