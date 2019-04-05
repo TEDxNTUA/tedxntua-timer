@@ -1,4 +1,4 @@
 export default {
-  SOCKET_URL: 'ws://localhost:8080',
+  INITIAL_TIME: 18 * 60,
   HIGHLIGHT_WHEN_UNDER_X_SECONDS: 60,
 }

@@ -8,10 +8,9 @@
     "build": "parcel build src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Theodore Diamantidis <diamaltho@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@tdiam/remotecontrol-preact": "file:../../remotecontrol-preact",
     "preact": ">=10 || ^10.0.0-alpha.0",
     "preact-async-route": "^2.2.1",
     "preact-router": "^3.0.0"

@@ -11,10 +11,6 @@ const App = () => (
       path='/timer'
       getComponent={ () => import('~/components/timer').then(m => m.default) }
     />
-    <AsyncRoute
-      path='/remote'
-      getComponent={ () => import('~/components/remote').then(m => m.default) }
-    />
   </Router>
 )
 

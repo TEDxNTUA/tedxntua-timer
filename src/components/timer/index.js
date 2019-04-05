@@ -1,5 +1,4 @@
 import { h, Component } from 'preact'
-import { RemoteControlReceiver } from '@tdiam/remotecontrol-preact'
 
 import './style'
 import settings from '~/settings'
@@ -10,14 +9,8 @@ class Timer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      remainingSeconds: null,
+      remainingSeconds: settings.INITIAL_TIME,
       message: '',
-    }
-  }
-
-  handleControl = (type, payload) => {
-    if (type === 'data') {
-      this.setState(payload)
     }
   }
 
@@ -30,9 +23,18 @@ class Timer extends Component {
     }
   }
 
+  resetTime = () => {
+    this.setState({ remainingSeconds: settings.INITIAL_TIME })
+  }
+
   componentDidMount() {
     // Countdown interval
     this.wi = window.setInterval(this.decrease, 1000)
+    document.addEventListener("keydown", event => {
+      if (event.keyCode === 32 || event.keyCode === 82) { // space or R
+        this.resetTime()
+      }
+    })
   }
 
   componentWillUnmount() {
@@ -47,14 +49,9 @@ class Timer extends Component {
       : ''
     return (
       <div>
-        <RemoteControlReceiver
-          socketUrl={ settings.SOCKET_URL }
-          onControl={ this.handleControl } />
-        { remainingSeconds != null && (
-          <time datetime={ isoDuration } class={ timerClass }>
-            { hhmmss }
-          </time>
-        )}
+        <time datetime={ isoDuration } class={ timerClass }>
+          { hhmmss }
+        </time>
       </div>
     )
   }
