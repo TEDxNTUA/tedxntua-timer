@@ -14,11 +14,16 @@ class Timer extends Component {
     }
   }
 
-  decrease = () => {
-    const rem = this.state.remainingSeconds
-    if (rem > 0) {
+  /**
+   * Returns a function that adds `dt` seconds to the timer.
+   */
+  timeAdder = (dt) => {
+    return () => {
+      const rem = this.state.remainingSeconds
+      // don't reduce time below zero
+      if (rem + dt < 0) return
       this.setState({
-        remainingSeconds: rem - 1,
+        remainingSeconds: rem + dt,
       })
     }
   }
@@ -29,10 +34,16 @@ class Timer extends Component {
 
   componentDidMount() {
     // Countdown interval
-    this.wi = window.setInterval(this.decrease, 1000)
+    this.wi = window.setInterval(this.timeAdder(-1), 1000)
     document.addEventListener("keydown", event => {
       if (event.keyCode === 32 || event.keyCode === 82) { // space or R
         this.resetTime()
+      }
+      if (event.keyCode === 61) { // plus
+        this.timeAdder(60)()
+      }
+      if (event.keyCode === 173) { // minus
+        this.timeAdder(-60)()
       }
     })
   }
